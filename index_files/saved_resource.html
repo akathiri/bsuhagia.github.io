@@ -109,12 +109,6 @@ function handleMessage(event) {
   var payload = safeParse(event.data);
   var origin = (event.origin || (event.orginalEvent && event.originalEvent.origin)).toString();
 
-  if (!isSafeOrigin(origin)) {
-    var error = new Error(`Message from origin ${origin} ignored`);
-    console.warn(error.message);
-    return;
-  }
-
   if (isAnalyticsPayload(payload)) {
     var method = payload.method;
     var args   = payload.args || [];
@@ -146,7 +140,6 @@ function listen() {
 /* harmony default export */ __webpack_exports__["a"] = ({
   handleMessage,
   isAnalyticsPayload,
-  isSafeOrigin,
   listen,
   safeParse
 });
